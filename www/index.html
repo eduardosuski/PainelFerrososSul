@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Painel Ferrosos Sul</title>
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="./css/bootstrap.css" rel="stylesheet">-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<link href="./css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+    <!--<link href=".\css\carousel.css" rel="stylesheet">-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	<script>
+    $ (document).ready(function() {
+        var data = new Date();
+        var dia = data.getDate();
+        var mes = data.getMonth() + 1;
+        var ano = data.getYear();
+        var hora = data.getHours();
+        var min = data.getMinutes();
+        
+        var dataCompleta ="Última leitura: " + dia + '/' + mes + '/' + ano + ' ' + hora + ':' + min + '.';
+        
+        document.getElementById('ultima_Data').innerHTML = dataCompleta;
+        
+        
+      $.ajax({
+          url: "http://software.radixeng.com.br:6060/indices/values"
+        }).then(function(data) {
+              $.each(data, function(idx, obj){
+              if(obj.Tipo === "metaDiariaITMI"){
+                  document.getElementById('meta_itmi').innerHTML = "Meta: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "metaDiariaITMD"){
+                  document.getElementById('meta_itmd').innerHTML = "Meta: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "metaDiariaPICO"){
+                  document.getElementById('meta_pico_total').innerHTML = "Meta: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "ritmoDiariaITMI"){
+                  document.getElementById('ritmo_itmi').innerHTML =  "Ritmo: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "ritmoDiariaITMD"){
+                  document.getElementById('ritmo_itmd').innerHTML = "Ritmo: <b>" + obj.Value  + " t</b>";
+                }
+              if(obj.Tipo === "ritmoDiariaPICO"){
+                  document.getElementById('ritmo_pico_total').innerHTML = "Ritmo: <b>" + obj.Value  + " t</b>";
+                }
+              if(obj.Tipo === "producaoDiariaITMI_hoje"){
+                  document.getElementById('producao_hoje_itmi').innerHTML = "Produção hoje: <b>" + obj.Value  + " t</b>";
+                }
+              if(obj.Tipo === "producaoDiariaITMD_hoje"){
+                  document.getElementById('producao_hoje_itmd').innerHTML = "Produção hoje: <b>" + obj.Value  + " t</b>";
+                }
+              if(obj.Tipo === "producaoDiariaPICO_hoje"){
+                  document.getElementById('producao_hoje_pico_total').innerHTML = "Produção hoje: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "producaoDiariaITMI_ontem"){
+                  document.getElementById('producao_ontem_itmi').innerHTML = "Produção ontem: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "producaoDiariaITMD_ontem"){
+                  document.getElementById('producao_ontem_itmd').innerHTML = "Produção ontem: <b>" + obj.Value + " t</b>";
+                }
+              if(obj.Tipo === "producaoDiariaPICO_ontem"){
+                  document.getElementById('producao_ontem_pico_total').innerHTML = "Produção ontem: <b>" + obj.Value + " t</b>";
+                }
+              })
+            });
+          });
+        
+
+        
+    </script>
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body style="background-color:#4B4D4C">
+      <div id="containerMenu">
+          <table style="background-color:#4B4D4C" width="100%">
+              <tr>
+                <td width="100">
+                    <img src="img/Vale_logo.png" width="100" height="76">
+                </td>
+                  <td align="center">
+                      <a class="Titulo" href="#" style="color:white;font-size: 25px"  >   Painel Ferrosos Sul</a>
+                  </td>
+              </tr>
+
+          </table>
+      </div>
+
+
+    <!-- Carousel
+    ================================================== -->
+      <form style="margin-top:20px;display: table;width: 100%;" method="post" action="./" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="+SlryVbw+vCWdynHyXoIj1Begt8aNy3rrrnS37aTjcaseq8zQxGw0s4pW7nKBgZVb6SOTtNz1/1TRdzz8m9khILjLfB1IegsPWYBpfEYeQHN1D+728Ct3c1I6HELQwSzKBi9FPQIidXH8Dr7X23M1NYBlvHe0PSBclq3hY5qkUIbaeafNEXQXJgrBUSb4GvoESqMW88TB6/8o2w3SqPqxr2b4OxF5d+4I4aV6G/gl7gIpr8vF2+xLm46dTvko4bTDRw7eGxUH48vknL/0sodGe0JlXcGt86KL1HgHuSzhLst1Tmsly7z4bKCOSgLjMOp74EqCD38oNbhUHbA8PwHwR/sqG3PxBW0SMg5nCWzgKai9oFM8XxASHul8ouXcIbPK/V7SuNGXPnYa32JGQX3fuO4T14v8eSzsG54VKVirDo5M4L7z7TfReSvdNrh0FiZSwfPbUzf5lusZ5vVcWuRI0JRf9nONbdFWxSdDw+S28wF6462LwaB6sIbfqFtuuwMkm1dqBZy6qJXQEToJJ6vSxQAksWdKL9nKZO09VYr1fSXpTjRkBVaJMR+HfBH4zGP476+6sirvAxip6ynEVFdUP1rBCPKbQHWa1UBmR7B41A9ktY2NC77473nW1NLVTiUgkaQ/NSI6km/8F3XfmQ6nHj/HQa0dzR/kaVxdNTGVYDh1mt+D5wJTKqG3C1kPhfuQ8yuYMcQXWBv85zD3nhawpAgQcsiZHnBjF5pErkwkOSv4ZDbIEvoAD4cd9szJ2OouUk5CxeVcY0iugnWOtmROO3V9uawrQokVK2cg//KX+GzTJ96xlxmU3fSJ8pfHLRBXF7e9orT7d2ol9zMdjlq8xpQcbKXqSwXfqCcUWBSEh6e1jjMuWg7me8YGfv+Ddy/DMkIr/2vT+rgZn4NQamEoOauOVK8EwDVECXiId5NpffEUgaTuX+2rcPhe3y7FQjbAU3tUtLOUEt8ia4u1GLOdUrbro1HAnNs/uLKxRPM6M6b/pXr1sn0w8Ib5aQ1Br62yoHg60SGsqpYvyhgLbhlqw==" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+</div>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" 
+         style="height: 400px;display: table-cell;text-align: center;vertical-align: middle;">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active" style="top: 150px;">
+          <img class="first-slide" src="img/background-gray.jpg" alt="First slide" width="100%">
+          <div class="container">
+            <div class="carousel-caption" style="bottom: 120px;">
+              <br />
+              <h1 style="font-size: 25px;font-weight: bold;">Produção ITMI</h1>
+                  <div class="row">
+                    <div id="meta_itmi" class="col-sm-15" style="font-size:130%;">Meta:<b> t</b></div>
+                  </div>
+                <div class="row">
+                    <div id="producao_ontem_itmi" class="col-sm-15" style="font-size:130%;">Produção ontem:<b> t</b></div>
+                  </div>
+                <div class="row">
+                   <div id="producao_hoje_itmi" class="col-sm-15" style="font-size:130%;">Produção hoje:<b> t</b></div>
+                  </div>
+                <div class="row">
+                   <div id="ritmo_itmi" class="col-sm-15" style="font-size:130%;">Ritmo:<b> t</b></div>
+                  </div>
+                  <div class="row">
+                       <div class="col-sm-4"><br /></div>
+                  </div>
+
+             <p><a href="#" id="btn_sinalizacao_itmi" class="btn btn-lg btn-danger" role="button">
+                 <span id="botao_status_itmi" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+             </a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item" style="top: 150px;">
+          <img class="second-slide" src="img/background-gray.jpg" alt="Second slide" width="100%">
+          <div class="container">
+            <div class="carousel-caption" style="bottom: 120px;">
+              <br />
+              <h1 style="font-size: 25px;font-weight: bold;">Produção ITMD</h1>
+              <div class="row">
+                  <div id="meta_itmd" class="col-sm-15" style="font-size:130%;"><label id="meta_itmd-valor"></label>Meta:<b> t</b></div>
+                  </div>
+                <div class="row">
+                  <div id="producao_ontem_itmd" class="col-sm-15" style="font-size:130%;">Produção ontem:<b> t</b></div>
+                  </div>
+                <div class="row">
+                   <div id="producao_hoje_itmd" class="col-sm-15" style="font-size:130%;">Produção hoje:<b> t</b></div>
+                  </div>
+                <div class="row">
+                   <div id="ritmo_itmd" class="col-sm-15" style="font-size:130%;">Ritmo:<b> t</b></div>
+                  </div>
+                  <div class="row">
+                       <div class="col-sm-4"><br /></div>
+                  </div>
+               <p><a href="#" id="btn_sinalizacao_itmd" class="btn btn-lg btn-success" role="button">
+                   <span id="botao_status_itmd" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+               </a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item" style="top: 150px;">
+          <img class="third-slide" src="img/background-gray.jpg" alt="Third slide" width="100%">
+          <div class="container">
+            <div class="carousel-caption" style="bottom: 120px;">
+               <br />
+              <h1 style="font-size: 25px;font-weight: bold;">Produção Pico - Total</h1>
+               <div class="row">
+                    <div id="meta_pico_total" class="col-sm-15" style="font-size:130%;">Meta:<b> t</b></div>
+                  </div>
+                <div class="row">
+                    <div id="producao_ontem_pico_total" class="col-sm-15" style="font-size:130%;">Produção ontem:<b> t</b></div>
+                  </div>
+                <div class="row">
+                   <div id="producao_hoje_pico_total" class="col-sm-15" style="font-size:130%;">Produção hoje:<b> t</b></div>
+                  </div>
+                <div class="row">
+                    <div id="ritmo_pico_total" class="col-sm-15" style="font-size:130%;">Ritmo:<b> t</b></div>
+                  </div>
+                  <div class="row">
+                       <div class="col-sm-4"><br /></div>
+                  </div>
+                <p><a href="#" id="btn_sinalizacao_pico_total" class="btn btn-lg btn-danger" role="button">
+                    <span id="botao_status_pico_total" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                </a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+      </form>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div>
+      </br>
+      
+      <!-- FOOTER -->
+      <footer>
+        <p id="ultima_Data" align="center" style="color: white; ">Ultima leitura: </p>
+        <!--<p>&copy; 2015 Vale SA. &middot; <a href="#">Demo de dashboards</a> &middot; <a href="#">TI e TA</a> &middot; <a href="#">Em construção</a></p>-->
+      </footer>
+</br>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <!--<script src="./js/bootstrap.min.js"></script>-->
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <!--<script src="./js/holder.min.js"></script>-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="./js/ie10-viewport-bug-workaround.js"></script>-->
+      <script>
+          $(document).ready(function () {
+              $('.carousel').carousel({
+                  interval: 9000
+              });
+          });
+    </script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>
